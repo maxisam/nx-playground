@@ -25,6 +25,9 @@
     "nx-e2e": {
       "tags": [],
       "implicitDependencies": ["nx"]
+    },
+    "core": {
+      "tags": []
     }
   }
 }
