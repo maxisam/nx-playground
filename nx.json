@@ -14,11 +14,20 @@
     "default": {
       "runner": "@nrwl/workspace/tasks-runners/default",
       "options": {
-        "cacheableOperations": ["build", "lint", "test", "e2e"]
+        "cacheableOperations": [
+          "build",
+          "lint",
+          "test",
+          "e2e",
+          "build-storybook"
+        ]
       }
     }
   },
   "projects": {
+    "core": {
+      "tags": []
+    },
     "nx": {
       "tags": []
     },
@@ -26,11 +35,12 @@
       "tags": [],
       "implicitDependencies": ["nx"]
     },
-    "core": {
-      "tags": []
-    },
     "ui": {
       "tags": []
+    },
+    "ui-e2e": {
+      "tags": [],
+      "implicitDependencies": ["ui"]
     }
   }
 }
