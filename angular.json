@@ -37,7 +37,7 @@
       "projectType": "library",
       "root": "libs/core",
       "sourceRoot": "libs/core/src",
-      "prefix": "nx1290",
+      "prefix": "org",
       "architect": {
         "build": {
           "builder": "@nrwl/angular:ng-packagr-lite",
@@ -77,7 +77,7 @@
       "projectType": "application",
       "root": "apps/nx",
       "sourceRoot": "apps/nx/src",
-      "prefix": "nx1290",
+      "prefix": "org",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -244,7 +244,7 @@
       "projectType": "library",
       "root": "libs/ui",
       "sourceRoot": "libs/ui/src",
-      "prefix": "nx1290",
+      "prefix": "org",
       "architect": {
         "build": {
           "builder": "@nrwl/angular:ng-packagr-lite",
