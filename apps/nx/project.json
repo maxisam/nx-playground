@@ -1,0 +1,141 @@
+{
+  "projectType": "application",
+  "root": "apps/nx",
+  "sourceRoot": "apps/nx/src",
+  "prefix": "org",
+  "architect": {
+    "build": {
+      "builder": "@angular-devkit/build-angular:browser",
+      "options": {
+        "outputPath": "dist/nx/browser",
+        "index": "apps/nx/src/index.html",
+        "main": "apps/nx/src/main.ts",
+        "polyfills": "apps/nx/src/polyfills.ts",
+        "tsConfig": "apps/nx/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": ["apps/nx/src/favicon.ico", "apps/nx/src/assets"],
+        "styles": ["apps/nx/src/styles.scss"],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/nx/src/environments/environment.ts",
+              "with": "apps/nx/src/environments/environment.prod.ts"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "builder": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "browserTarget": "nx:build:production"
+        },
+        "development": {
+          "browserTarget": "nx:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "builder": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "nx:build"
+      }
+    },
+    "lint": {
+      "builder": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["apps/nx/src/**/*.ts", "apps/nx/src/**/*.html"]
+      }
+    },
+    "test": {
+      "builder": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/nx"],
+      "options": {
+        "jestConfig": "apps/nx/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "server": {
+      "builder": "@angular-devkit/build-angular:server",
+      "options": {
+        "outputPath": "dist/nx/server",
+        "main": "apps/nx/server.ts",
+        "tsConfig": "apps/nx/tsconfig.server.json",
+        "inlineStyleLanguage": "scss"
+      },
+      "configurations": {
+        "production": {
+          "outputHashing": "media",
+          "fileReplacements": [
+            {
+              "replace": "apps/nx/src/environments/environment.ts",
+              "with": "apps/nx/src/environments/environment.prod.ts"
+            }
+          ]
+        },
+        "development": {
+          "optimization": false,
+          "sourceMap": true,
+          "extractLicenses": false
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve-ssr": {
+      "builder": "@nguniversal/builders:ssr-dev-server",
+      "configurations": {
+        "development": {
+          "browserTarget": "nx:build:development",
+          "serverTarget": "nx:server:development"
+        },
+        "production": {
+          "browserTarget": "nx:build:production",
+          "serverTarget": "nx:server:production"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "prerender": {
+      "builder": "@nguniversal/builders:prerender",
+      "options": {
+        "routes": ["/"]
+      },
+      "configurations": {
+        "production": {
+          "browserTarget": "nx:build:production"
+        },
+        "development": {
+          "browserTarget": "nx:build:development"
+        }
+      },
+      "defaultConfiguration": "production"
+    }
+  }
+}
